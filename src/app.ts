@@ -1,18 +1,27 @@
 import express from "express";
-import swaggerUi from "swagger-ui-express";
 import { RegisterRoutes } from "./routes/v1/routes";
-import fs from "fs";
+import swaggerUi from 'swagger-ui-express';
 import path from "path";
+import fs from 'fs';
 
-const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, "docs/swagger.json"), "utf-8"));
+const swaggerFile = path.resolve(__dirname, 'docs/swagger.json');
+const swaggerData = fs.readFileSync(swaggerFile, 'utf8');
+const swaggerDocument = JSON.parse(swaggerData);
 
 const app = express();
+
 app.use(express.json());
 
 // Register routes
 RegisterRoutes(app);
 
 // Serve Swagger UI
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Serve Swagger JSON
+app.get('/docs/swagger.json', (_req, res) => {
+    res.sendFile(swaggerFile);
+});
 
 export { app };
