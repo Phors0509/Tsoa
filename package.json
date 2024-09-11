@@ -3,12 +3,13 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "node build-script.js",
-        "start": "node build/server.js",
         "tsoa:gen": "tsoa spec && tsoa routes",
         "dev": "tsoa:gen & nodemon src/server.ts",
-        "start:local": "node ./build/server.js"
+        "build": "node build-script.js",
+        "start:local": "pm2 start ecosystem.config.local.js",
+        "start": "pm2 start ecosystem.config.js",
+        "restart": "pm2 reload ecosystem.config.js",
+        "db:insert": "ts-node src/database/scripts/insert-data.ts"
     },
     "keywords": [],
     "author": "",
