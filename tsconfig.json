@@ -18,7 +18,8 @@
         "pretty": true,
         "baseUrl": "./src",
         "paths": {
-            "@/*": ["*"]
+            "@/*": ["*"],
+            "@models/*": ["src/models/*"]
         }
     },
     "include": ["src/**/*"],
