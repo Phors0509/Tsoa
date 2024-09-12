@@ -9,7 +9,8 @@
         "start:local": "pm2 start ecosystem.config.local.js",
         "start": "pm2 start ecosystem.config.js",
         "restart": "pm2 reload ecosystem.config.js",
-        "db:insert": "ts-node src/database/scripts/insert-data.ts"
+        "db:insert": "ts-node src/database/scripts/insert-data.ts",
+        "dev:local": "node build/server.js"
     },
     "keywords": [],
     "author": "",
