@@ -22,5 +22,10 @@ jobs:
             - name: Install dependencies
               run: yarn install
 
+            - name: create .env.development file
+              run: |
+                  mkdir -p src/config 
+                  echo "NODE_ENV=production" > src/config/.env.development
+
             - name: Build the project
               run: yarn build
