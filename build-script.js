@@ -26,8 +26,12 @@ esbuild
                         to: ["build/docs/swagger.json"],
                     },
                     {
-                        from: ["src/config/.env"],
-                        to: ["build/config"],
+                        from: ["src/config/.env.development"],
+                        to: ["build/config/.env.development"],
+                    },
+                    {
+                        from: ["src/config/.env.production"],
+                        to: ["build/config/.env.production"],
                     },
                     {
                         from: ["ecosystem.config.js"],
@@ -50,8 +54,12 @@ esbuild
         console.log("=========================================");
 
         fs.copySync(
-            path.resolve(__dirname, "src/config/.env"),
-            path.resolve(__dirname, "build/config/.env")
+            path.resolve(__dirname, "src/config/.env.development"),
+            path.resolve(__dirname, "build/config/.env.development")
+        );
+        fs.copySync(
+            path.resolve(__dirname, "src/config/.env.production"),
+            path.resolve(__dirname, "build/config/.env.production")
         );
         console.log("Environment variables copied successfully!");
         console.log("=========================================");
